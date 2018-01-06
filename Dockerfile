@@ -14,7 +14,9 @@ ENV NODE_VERSION 6.10.3
 RUN apt-get install curl libc6 libcurl3 zlib1g libtool autoconf
 
 RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh | bash
-ENV NVM_DIR ~/.nvm
+
+# NOTE: /root is used here because $HOME does not work and neither does ~
+ENV NVM_DIR /root/.nvm
 RUN . $HOME/.nvm/nvm.sh && nvm install $NODE_VERSION && nvm alias default $NODE_VERSION
 
 RUN git clone https://github.com/jedisct1/libsodium.git
